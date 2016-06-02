@@ -15,8 +15,7 @@ public class GetDictionaryTerm extends HttpServlet {
 
         String term = request.getParameter("term");
         for (Entry entry : Entries.DATA) {
-            if (entry.getName().toLowerCase().equals(term.toLowerCase())) {
-
+            if (entry.getName().toLowerCase().indexOf(term.toLowerCase()) != -1) {
                 stringBuilder.append("<div class='entry'>");
                 stringBuilder.append("<h3 class='term'>" + entry.getName() + "</h3>");
                 stringBuilder.append("<div class='part'>" + entry.getPart() + "</div>");

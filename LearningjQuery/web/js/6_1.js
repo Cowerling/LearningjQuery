@@ -79,7 +79,18 @@ $(document).ready(function () {
     $("#letter-e a").click(function (event) {
         event.preventDefault();
         var requestData = {term: $(this).text()};
-        $.get("GetDictionaryTerm", requestData, function (data) {
+        /*$.post("GetDictionaryTerm", requestData, function (data) {
+            $("#dictionary").html(data);
+        });*/
+        $("#dictionary").load("GetDictionaryTerm", requestData);
+    });
+});
+
+$(document).ready(function () {
+    $("#letter-f form").submit(function (event) {
+        event.preventDefault();
+        var formValues = $(this).serialize();
+        $.get("GetDictionaryTerm", formValues, function (data) {
             $("#dictionary").html(data);
         });
     });
