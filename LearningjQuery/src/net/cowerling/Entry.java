@@ -135,5 +135,75 @@ class Entries {
                     "EVANGELIST",
                     "n.",
                     "A bearer of good tidings, particularly (in a religious sense) such as assure us of our own salvation and the damnation of our neighbors."),
+            new Entry(
+                    "FAITH",
+                    "n.",
+                    "Belief without evidence in what is told by one who speaks without knowledge, of things without parallel."),
+            new Entry(
+                    "FAMOUS",
+                    "adj.",
+                    "Conspicuously miserable.",
+                    new String[] {
+                            "Done to a turn on the iron, behold",
+                            "Him who to be famous aspired.",
+                            "Content?  Well, his grill has a plating of gold,",
+                            "And his twistings are greatly admired."},
+                    "Hassan Brubuddy"),
+            new Entry(
+                    "FELON",
+                    "n.",
+                    "A person of greater enterprise than discretion, who in embracing an opportunity has formed an unfortunate attachment."),
+            new Entry(
+                    "FIDDLE",
+                    "n.",
+                    "An instrument to tickle human ears by friction of a horse\'s tail on the entrails of a cat.",
+                    new String[] {
+                            "To Rome said Nero:  \"If to smoke you turn",
+                            "I shall not cease to fiddle while you burn.\"",
+                            "To Nero Rome replied:  \"Pray do your worst,",
+                            "\'Tis my excuse that you were fiddling first.\""},
+                    "Orm Pludge"),
+            new Entry(
+                    "FIDELITY",
+                    "n.",
+                    "A virtue peculiar to those who are about to be betrayed."),
+            new Entry(
+                    "FLOP",
+                    "v.",
+                    "Suddenly to change one\'s opinions and go over to another party. The most notable flop on record was that of Saul of Tarsus, who has been severely criticised as a turn-coat by some of our partisan journals."),
+            new Entry(
+                    "FORCE",
+                    "n.",
+                    "",
+                    new String[] {
+                            "\"Force is but might,\" the teacher said &mdash;",
+                            "\"That definition\'s just.\"",
+                            "The boy said naught but thought instead,",
+                            "Remembering his pounded head:",
+                            "\"Force is not might but must!\""}),
+            new Entry(
+                    "FORGETFULNESS",
+                    "n.",
+                    "A gift of God bestowed upon doctors in compensation for their destitution of conscience."),
+            new Entry(
+                    "FRIENDLESS",
+                    "adj.",
+                    "Having no favors to bestow.  Destitute of fortune. Addicted to utterance of truth and common sense."),
+            new Entry(
+                    "FRIENDSHIP",
+                    "n.",
+                    "A ship big enough to carry two in fair weather, but only one in foul.",
+                    new String[] {
+                            "The sea was calm and the sky was blue;",
+                            "Merrily, merrily sailed we two.",
+                            "(High barometer maketh glad.)",
+                            "On the tipsy ship, with a dreadful shout,",
+                            "The tempest descended and we fell out.",
+                            "(O the walking is nasty bad!)"},
+                    "Armit Huff Bettle"),
+            new Entry(
+                    "FUTURE",
+                    "n.",
+                    "That period of time in which our affairs prosper, our friends are true and our happiness is assured.")
     };
 }
