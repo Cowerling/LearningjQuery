@@ -79,6 +79,7 @@ a {
 .entry .term {
     display: inline;
     font-weight: bold;
+    cursor: pointer;
 }
 .entry .part {
     padding: 0 1em;
