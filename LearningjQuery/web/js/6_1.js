@@ -159,3 +159,10 @@ $(document).ready(function () {
         });
     });
 });
+
+$(document).ready(function () {
+    $("#letter-h a").click(function (event) {
+        event.preventDefault();
+        $("#dictionary").load("6_h.html .entry");
+    });
+});
