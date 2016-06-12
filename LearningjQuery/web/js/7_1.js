@@ -30,4 +30,22 @@ $(document).ready(function () {
         $("ul:paused").cycle("resume");
         $.cookie("cyclePaused", null);
     }).appendTo($controls);
+
+    $books.hover(function () {
+        $books.find(".title").animate({
+            backgroundColor: "eee",
+            color: "#000"
+        }, 1000);
+    }, function () {
+        $books.find(".title").animate({
+            backgroundColor: "000",
+            color: "#fff"
+        }, 1000);
+    });
+});
+
+$(document).ready(function () {
+    $("h1").click(function () {
+        $(this).toggleClass("highlighted", "slow", "easeInExpo");
+    });
 });

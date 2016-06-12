@@ -77,3 +77,59 @@ ul#books li .author {
     background-color: #F79321;
     color: #fff;
 }
+
+#books-controls {
+    margin: 10px 0;
+    width: 500px;
+}
+#books-controls button {
+    margin: 0 10px 10px 0;
+    float: left;
+}
+#books-controls #slider {
+    clear: left;
+    margin: 10px 0;
+}
+
+h1 {
+    text-align: center;
+    border: 0 solid #fff;
+    width: 500px;
+    margin-bottom: 20px;
+}
+h1.highlighted {
+    border: 10px solid #F79321;
+    padding: 10px;
+    width: 460px;
+    margin-bottom: 0;
+    background-color: #000;
+    color: #F79321;
+}
+
+#books .ui-resizable-s {
+    bottom: 0;
+}
+
+.ui-content img {
+    display: block;
+}
+.ui-content .title {
+    padding: 10px;
+    margin: 0;
+    width: 280px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #000;
+    color: #fff;
+    text-shadow: none;
+}
+.ui-content .author {
+    padding: 10px;
+    margin: 0;
+    width: 280px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #F79321;
+    color: #fff;
+    text-shadow: none;
+}
