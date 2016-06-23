@@ -27,3 +27,18 @@ $(document).ready(function () {
         $("tr").swapClass("one", "two");
     });
 });
+
+$(document).ready(function () {
+    $.fn.shadow.defaults.copies = 10;
+    $("h1").shadow({
+        copyOffset: function (index) {
+            return {x: -index, y: index};
+        }
+    });
+});
+
+$(document).ready(function () {
+    $("a").tooltip().on("tooltipopen", function (event) {
+        alert();
+    });
+});

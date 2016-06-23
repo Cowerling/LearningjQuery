@@ -21,7 +21,7 @@
     };
 
     $.fn.swapClass = function (class1, class2) {
-        this.each(function () {
+        return this.each(function () {
             var $element = $(this);
             if ($element.hasClass(class1)) {
                 $element.removeClass(class1).addClass(class2);
