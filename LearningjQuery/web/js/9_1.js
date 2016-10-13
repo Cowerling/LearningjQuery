@@ -3,9 +3,10 @@
  */
 
 $(document).ready(function () {
+    var $news = $("#news");
     function stripe() {
-        $("#news").find("tr.alt").removeClass("alt");
-        $("#news tbody").each(function () {
+        $news.find("tr.alt").removeClass("alt");
+        $news.find("tbody").each(function () {
             $(this).children(":visible").has("td")
                 .filter(function (index) {
                     return (index % 4) < 2;
@@ -29,4 +30,19 @@ $(document).ready(function () {
 
         stripe();
     })
+});
+
+$(document).ready(function () {
+    var $cell = $("#release").nextAll().addBack();
+    $cell.addClass("highlight");
+    console.log($cell.context);
+    console.log($cell.selector);
+    console.log($cell.prevObject);
+});
+
+$(document).ready(function () {
+    $("#news td").click(function () {
+        $("#news td.active").removeClass("active");
+        $(this).column().addClass("active");
+    });
 });
