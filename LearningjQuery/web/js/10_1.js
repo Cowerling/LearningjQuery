@@ -1,31 +1,68 @@
 /**
  * Created by dell on 2016-10-13.
  */
-$(document).ready(function () {
+(function ($) {
+    $.event.special.throttledScroll = {
+        setup: function (data) {
+            var timer = 0;
+            $(this).on("scroll.throttledScroll", function (event) {
+                if (!timer) {
+                    timer = setTimeout(function () {
+                        $(this).triggerHandler("throttledScroll");
+                        timer = 0;
+                    }, 250);
+                }
+            });
+        },
+        teardown: function () {
+            $(this).off("scroll.throttledScroll");
+        }
+    };
+
+    $(document).on("mouseenter mouseleave", "div.photo", function (event) {
+        var $details = $(this).find(".details");
+        if(event.type == "mouseenter") {
+            $details.fadeTo("fast", 0.7);
+        } else {
+            $details.fadeOut("fast");
+        }
+    });
+
+    $(document).on("nextPage", function (event, scrollToVisible) {
+        var url = $("#more-photos").attr("href");
+        if (url) {
+            $.get(url, function (data) {
+                var $data = $(data).appendTo("#gallery");
+                if (scrollToVisible) {
+                    var newTop = $data.offset().top;
+                    $(window).scrollTop(newTop);
+                }
+                checkScrollPosition();
+            });
+        }
+    });
+
     var pageNumber = 1;
+    $(document).on("nextPage",function () {
+        pageNumber++;
+        if (pageNumber < 20) {
+            $("#more-photos").attr("href", "pages/" + pageNumber + ".html");
+        } else {
+            $("#more-photos").remove();
+        }
+    });
+
+    function checkScrollPosition() {
+        var distance = $(window).scrollTop() + $(window).height();
+        if ($("#container").height() <= distance) {
+            $(document).trigger("nextPage");
+        }
+    }
 
     $("#more-photos").click(function (event) {
         event.preventDefault();
-
-        var $link = $(this);
-        var url = $link.attr("href");
-        if(url) {
-            $.get(url, function (data) {
-                $("#gallery").append(data);
-            });
-
-            pageNumber++;
-            if(pageNumber < 20) {
-                $link.attr("href", "pages/" + pageNumber + ".html");
-            } else {
-                $link.remove();
-            }
-        }
+        $(this).trigger("nextPage", [true]);
     });
-});
 
-$(document).ready(function () {
-    $("#gallery").on("mouseover mouseout", function (event) {
-        console.log(event.target);
-    });
-});
+    $(window).on("throttledScroll", checkScrollPosition).trigger("throttledScroll");
+})(jQuery);
