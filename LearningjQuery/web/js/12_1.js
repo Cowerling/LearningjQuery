@@ -182,3 +182,33 @@ $(document).ready(function () {
         }).insertBefore($table);
     });
 });
+
+(function ($) {
+    var div = document.createElement("div");
+    $.support.textShadow = div.style.textShadow === "";
+    $.support.filter = div.style.filter === "";
+    div = null;
+
+    if ($.support.textShadow) {
+        $.cssHooks.glowColor = {
+            set: function (element, value) {
+                if (value == "none") {
+                    element.style.textShadow = "";
+                } else {
+                    element.style.textShadow = "0 0 2px " + value;
+                }
+            }
+        };
+    } else if ($.support.filter) {
+        $.cssHooks.glowColor = {
+            set: function (element, style) {
+                if (value == "none") {
+                    element.style.filter = "";
+                } else {
+                    element.style.zoom = 1;
+                    element.style.filter = "progid:DXImageTransform.Microsoft.Glow(Strength=2, Color=" + value + ");"
+                }
+            }
+        };
+    }
+})(jQuery);
