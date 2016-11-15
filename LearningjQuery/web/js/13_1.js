@@ -43,8 +43,10 @@ $(document).ready(function () {
 
         $response.empty();
 
-        var search = $("#title").val();
-        if (search == "") {
+        var title = $("#title").val(),
+            category = $("#categories").find("li.active").text(),
+            search = category + "-" + title;
+        if (search == "-") {
             return;
         }
 
@@ -55,7 +57,8 @@ $(document).ready(function () {
                 url: "https://api.github.com/users/" + $("#title").val() + "/repos",
                 dataType: "jsonp",
                 data: {
-                    title: $("#title").val()
+                    title: $("#title").val(),
+                    category: category
                 },
                 timeout: 15000
             });
@@ -119,5 +122,63 @@ $(document).ready(function () {
         event.preventDefault();
         $(this).parent().toggleClass("active").siblings(".active").removeClass("active");
         $("#ajax-form").triggerHandler("submit");
+    });
+
+    $.ajaxPrefilter(function (options) {
+        if (/\.yml$/.test(options.url)) {
+            return "yaml";
+        }
+    });
+
+    $.ajaxTransport("img", function (settings) {
+        var $img, img, prop;
+
+        return {
+            send: function (headers, complete) {
+                function callback(success) {
+                    if (success) {
+                        complete(200, "OK", {img: img});
+                    } else {
+                        $img.remove();
+                        complete(404, "Not Found");
+                    }
+                }
+
+                $img = $("<img>", {
+                    src: settings.url
+                });
+                img = $img[0];
+                prop = typeof img.naturalWidth === "undefined" ? "width" : "naturalWidth";
+                if (img.complete) {
+                    callback(!!img[prop]);
+                } else {
+                    $img.on("load error", function (event) {
+                        callback(event.type == "load");
+                    });
+                }
+            },
+            abort: function () {
+                if ($img) {
+                    $img.remove();
+                }
+            }
+        };
+    });
+});
+
+$(document).ready(function () {
+    $.ajax({
+        url: "images/sunset.jpg",
+        dataType: "img"
+    }).done(function (img) {
+        $("<div></div>", {
+            id: "picture",
+            html: img
+        }).appendTo("body");
+    }).fail(function (xhr, textStatus, msg) {
+        $("<div></div>", {
+            id: "picture",
+            html: textStatus + ": " + msg
+        }).appendTo("body");
     });
 });
