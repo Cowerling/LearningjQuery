@@ -13,6 +13,23 @@ QUnit.test("Child Selector", function(assert) {
 QUnit.test("Attribute Selector", function(assert) {
     assert.expect(2);
     assert.ok(this.topLis.find(".mailto").length == 1, "a.mailto");
-    assert.equal(this.topLis.find(".pdflink").length == 1, ".a.pdflink");
+    assert.equal(this.topLis.find(".pdflink").length, 1, "a.pdflink");
 });
+
 QUnit.module("Ajax");
+QUnit.test("JSON", function (assert) {
+    assert.expect(2);
+    var backbite = {
+        term: "BACKBITE",
+        part: "v.t.",
+        definition: "To speak of a man as you find him when he can't find you."
+    };
+
+    var done = assert.async();
+
+    $.getJSON("text/b.json", function (json, textStatus) {
+        assert.equal(textStatus, "success", "Request successful");
+        assert.deepEqual(json[1], backbite, "result array matches \"backbite\" map");
+        done();
+    });
+});
